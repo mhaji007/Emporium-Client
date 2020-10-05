@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
+import Layout from './Layout';
 
-const Home = props => {
+const Home = () =>
+{
   return (
-    <div>
-      Home
-    </div>
+    <Layout title="Homepage" description="Emporium App">
+
+    </Layout>
   )
-}
+};
 
-
-export default Home
-
+export default Home;

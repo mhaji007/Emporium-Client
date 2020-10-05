@@ -1,13 +1,8 @@
-import React from 'react'
+import React from "react";
+import Layout from '../core/Layout';
 
 const Signup = () => {
-  return (
-    <div>
-      Sign up
-    </div>
-  )
-}
+  return <Layout title="Signup" description="Sign up"></Layout>;
+};
 
-export default Signup
-
-
+export default Signup;
