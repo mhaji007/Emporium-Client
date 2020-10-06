@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Layout from '../core/Layout';
 import {API} from '../config';
+import {Link} from 'react-router-dom';
 
 
 const Signup = () => {
@@ -45,6 +46,7 @@ const Signup = () => {
 
   const clickSubmit = (event) =>{
     event.preventDefault();
+    setValues({...values, error:false})
     // console.log(name, email, password)
     signup({name, email, password}).then(data=>{
       if(data.error) {
@@ -89,8 +91,8 @@ const Signup = () => {
     )
 
     const showSuccess = () => (
-      <div className="alert alert-danger" style={{display: success ? '': 'none'}}>
-        New account is created. Please sign in.
+      <div className="alert alert-success" style={{display: success ? '': 'none'}}>
+        New account is created. Please <Link to="/signin">sign in.</Link>
       </div>
     )
 
