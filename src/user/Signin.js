@@ -6,6 +6,7 @@ const Signin = () => {
     <Layout title="Signin" description="Sign in to Emporium">
 
     </Layout>
+  
   )
 }
 

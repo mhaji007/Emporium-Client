@@ -2,6 +2,8 @@ import React from 'react';
 // withRouter to access props history (e.g., /home, /about)
 import {Link, withRouter} from 'react-router-dom';
 
+import './Menu.module.css';
+
 const isActive = (history, path) => {
   // if the browser's history location matches
   // the path that is sent in mark link
@@ -35,7 +37,8 @@ const isActive = (history, path) => {
         </li>
       </ul>
     </div>
+
   )
-}
+  }
 
 export default withRouter(Menu);
