@@ -44,3 +44,11 @@ import {API} from '../config';
       console.log(err);
     })
   };
+
+  export const authenticate = (data, next) =>{
+    if(typeof window !== 'undefined') {
+      console.log(JSON.stringify(data));
+      window.localStorage.setItem('jwt', JSON.stringify(data));
+      next();
+    }
+  }
