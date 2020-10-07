@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Layout from '../core/Layout';
 import { signup } from '../auth';
 
@@ -68,6 +68,9 @@ const Signup = () => {
     const showSuccess = () => (
         <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
             New account is created. Please <Link to="/signin">Signin</Link>
+            {/* setTimeout(() => {
+              <Redirect to="/signin"/>
+            }, 1000); */}
         </div>
     );
 
