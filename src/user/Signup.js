@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Layout from '../core/Layout';
 import { signup } from '../auth';
 
@@ -68,16 +68,13 @@ const Signup = () => {
     const showSuccess = () => (
         <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
             New account is created. Please <Link to="/signin">Signin</Link>
-            {/* setTimeout(() => {
-              <Redirect to="/signin"/>
-            }, 1000); */}
         </div>
     );
 
     return (
         <Layout
             title="Signup"
-            description="Signup to Node React E-commerce App"
+            description="Signup to Emporium"
             className="container col-md-8 offset-md-2"
         >
             {showSuccess()}

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
-import { signin, authenticate } from "../auth";
+import { signin, authenticate, isAuthenticated } from "../auth";
 
 const Signin = () => {
     const [values, setValues] = useState({
-        email: "",
-        password: "",
+        email: "ryan@gmail.com",
+        password: "rrrrrr9",
         error: "",
         loading: false,
         redirectToReferrer: false
     });
 
     const { email, password, loading, error, redirectToReferrer } = values;
-
+    const { user } = isAuthenticated();
 
     const handleChange = name => event => {
         setValues({ ...values, error: false, [name]: event.target.value });
@@ -26,21 +26,17 @@ const Signin = () => {
             if (data.error) {
                 setValues({ ...values, error: data.error, loading: false });
             } else {
-              authenticate(data, ()=>{
-
-                  setValues({
-                      ...values,
-                      redirectToReferrer: true
-                  });
-                }
-
-                )
-
+                authenticate(data, () => {
+                    setValues({
+                        ...values,
+                        redirectToReferrer: true
+                    });
+                });
             }
         });
     };
 
-    const signInForm = () => (
+    const signUpForm = () => (
         <form>
             <div className="form-group">
                 <label className="text-muted">Email</label>
@@ -85,19 +81,26 @@ const Signin = () => {
 
     const redirectUser = () => {
         if (redirectToReferrer) {
-          return <Redirect to="/" />
+            if (user && user.role === 1) {
+                return <Redirect to="/admin/dashboard" />;
+            } else {
+                return <Redirect to="/user/dashboard" />;
+            }
+        }
+        if (isAuthenticated()) {
+            return <Redirect to="/" />;
         }
     };
 
     return (
         <Layout
             title="Signin"
-            description="Signin to Node React E-commerce App"
+            description="Signin to Emporium"
             className="container col-md-8 offset-md-2"
         >
             {showLoading()}
             {showError()}
-            {signInForm()}
+            {signUpForm()}
             {redirectUser()}
         </Layout>
     );
