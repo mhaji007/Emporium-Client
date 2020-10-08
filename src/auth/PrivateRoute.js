@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { isAuthenticated } from "./index";
 
+// component is the component(page) passed in
+// (here the signin page) renamed to Component
+// rest is props of the component being passed
+// like path, exact, history and all other props
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
