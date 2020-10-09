@@ -23,3 +23,24 @@ import {API} from '../config';
       console.log(err);
     })
   };
+
+  export const createProduct = (userId, token, product) =>{
+    // console.log(userId, token, category);
+    return fetch(`${API}/product/create/${userId}`, {
+      method: "POST",
+      headers: {
+        // Media type accepted by the browser
+        Accept: 'application/json',
+        Authorization:`Bearer ${token}`
+      },
+      // transform user object to
+      // JSON string
+      body: product
+    }
+    )
+    .then(response => response.json()
+    )
+    .catch(err => {
+      console.log(err);
+    })
+  };
