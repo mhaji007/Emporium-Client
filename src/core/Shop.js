@@ -19,6 +19,12 @@ const Shop = () => {
     });
   };
 
+  // Filter is an array of categoryIds and Price ranges
+  // FilterBy is either by category or by price
+  const handleFilters = (filters, filterBy) => {
+    console.log("SHOP", filters, filterBy);
+  }
+
   useEffect(() => {
     init();
   },[])
@@ -32,7 +38,8 @@ const Shop = () => {
          {/* Left sidebar - category display */}
          <h4>Filter by categories</h4>
          <ul>
-          {<Checkbox categories={categories}/>}
+           {/* Pass categories and handleFilters to Checkbox */}
+          {<Checkbox categories={categories} handleFilters={(filters)=>handleFilters(filters, 'category')}/>}
           </ul>
         </div>
         <div className="col-8">
