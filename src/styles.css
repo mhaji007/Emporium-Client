@@ -4,9 +4,9 @@
   border: none;
   background: linear-gradient(-45deg, #464646, #343a40, #3f96cd, #262727);
   background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
+  /* -webkit-animation: Gradient 15s ease infinite;
   -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite; */
 }
 .btn,
 .jumbotron,

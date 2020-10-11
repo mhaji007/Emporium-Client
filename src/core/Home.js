@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import Layout from './Layout';
 import {getProducts} from "./apiCore";
 import Card from './Card';
+import styles from './Home.module.css';
 
 const Home = () =>
 {
@@ -42,14 +43,14 @@ const Home = () =>
 
       <h2 className="mb-4">Best Sellers</h2>
 
-      <div className="row">
+      <div className={styles.customRow}>
 
       {productsBySell.map((product, i ) => (<Card key={i} product={product}/>))}
 
       </div>
       <h2 className="mb-4">New Arrivals</h2>
 
-      <div className="row">
+      <div className={styles.customRow}>
       {productsByArrival.map((product, i ) => (<Card key={i} product={product}/>))}
       </div>
 

@@ -6,8 +6,8 @@ import classnames from "classnames";
 
 const Card = ({ product }) => {
   return (
-    <div className={styles.dFlex}>
-    {/* <div className="col-2"> */}
+    // <div className={styles.dFlex}>
+    // {/* <div className="col-2"> */}
     <div className={classnames(styles.container, styles.pageWrapper)}>
       <div className={styles.pageInner}>
         <div className={styles.row}>
@@ -50,8 +50,8 @@ const Card = ({ product }) => {
         </div>
       </div>
       </div>
-      {/* </div> */}
-      </div>
+      // {/* </div> */}
+      // </div>
 
 
   );

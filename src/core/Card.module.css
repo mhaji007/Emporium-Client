@@ -41,7 +41,7 @@ body {
 }
 
 .elWrapper {
-  width: 360px;
+  width: 260px;
   padding: 15px;
   margin: 15px auto;
   background-color: #fff;
@@ -49,7 +49,7 @@ body {
   margin-right: 5px;
 }
 
-
+/* 
 @media (max-width: 991px) {
   .elWrapper {
     width: 345px;
@@ -61,7 +61,7 @@ body {
     width: 290px;
     margin: 30px auto;
   }
-}
+} */
 
 .elWrapper:hover .hBg {
   left: 0px;

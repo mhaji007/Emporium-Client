@@ -1,6 +1,7 @@
 import React from "react";
 import Menu from "./Menu";
 import "../styles.css";
+import styles from "./Layout.module.css"
 
 const Layout = ({
   title = "Title",
@@ -17,6 +18,7 @@ const Layout = ({
       </div>
       <div className={className}>{children}</div>
     </div>
+
   );
 };
 
