@@ -11,6 +11,7 @@ const Layout = ({
 }) => {
   return (
     <div>
+      <div className={styles.wrapper}>
       <Menu />
       <div className="jumbotron">
         <h2>{title}</h2>
@@ -18,7 +19,7 @@ const Layout = ({
       </div>
       <div className={className}>{children}</div>
     </div>
-
+      </div>
   );
 };
 

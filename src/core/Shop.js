@@ -4,6 +4,8 @@ import Card from './Card';
 import {getCategories} from "./apiCore";
 import Checkbox from './Checkbox';
 
+// Component that sends request to backend
+// and displays products based on filters
 const Shop = () => {
 
   const [categories, setCategories] = useState([]);
