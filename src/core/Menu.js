@@ -3,7 +3,8 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
 
-import "./Menu.module.css";
+
+import styles from "./Menu.module.css";
 
 const isActive = (history, path) => {
   // if the browser's history location matches
@@ -19,7 +20,8 @@ const isActive = (history, path) => {
 // through withRouter
 const Menu = ({ history }) => {
   return (
-    <div>
+
+    <div className={styles.nav}>
       <ul className="nav nav-tabs bg-dark">
         <li className="nav-item">
           <Link className="nav-link" style={isActive(history, "/")} to="/">
@@ -89,6 +91,8 @@ const Menu = ({ history }) => {
         )}
       </ul>
     </div>
+
+
   );
 };
 

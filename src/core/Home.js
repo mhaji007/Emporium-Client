@@ -37,7 +37,8 @@ const Home = () =>
 
 
   return (
-    <Layout title="Homepage" description="Emporium App" className="container-fluid">
+
+    <Layout title="Emporium" description="Browse. Shop. Enjoy. " className="container-fluid">
 
       <h2 className="mb-4">Best Sellers</h2>
 

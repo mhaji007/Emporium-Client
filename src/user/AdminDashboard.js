@@ -43,7 +43,6 @@ const AdminDashboard = () => {
     );
   };
 
-
   return (
     <Layout
       title="Dashboard"
@@ -52,10 +51,7 @@ const AdminDashboard = () => {
     >
       <div className="row">
         <div className="col-3">{AdminLinks()}</div>
-        <div className="col-9">
-          {AdminInfo()}
-
-        </div>
+        <div className="col-9">{AdminInfo()}</div>
       </div>
     </Layout>
   );

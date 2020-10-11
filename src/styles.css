@@ -1,16 +1,26 @@
 /* border radius */
 
+.nav {
+  border: none;
+  background: linear-gradient(-45deg, #464646, #343a40, #3f96cd, #262727);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+}
 .btn,
 .jumbotron,
 .nav :hover {
-  border-radius:  0px;
+  border-radius: 0px;
+  outline: transparent;
+  font-family: 'PT Sans', sans-serif;
 }
 
 /**
- * product image on card
- */
+* product image on card
+*/
 
- .product-img {
+.product-img {
   min-height: 100px;
 }
 
@@ -20,7 +30,7 @@
 
 @media only screen and (max-width: 600px) {
   .jumbotron h2 {
-      margin-top: 10px;
+    margin-top: 10px;
   }
 }
 
@@ -31,45 +41,46 @@
 .jumbotron {
   height: 180px;
   color: #fff;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
+  background: linear-gradient(145deg, #464646, transparent, #343a40) , url("/img/Emporium.jpg");
+
+
+  /* -webkit-animation: Gradient 15s ease infinite;
   -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite; */
 }
 
-@-webkit-keyframes Gradient {
+/* @-webkit-keyframes Gradient {
   0% {
-      background-position: 0% 50%;
+    background-position: 0% 50%;
   }
   50% {
-      background-position: 100% 50%;
+    background-position: 100% 50%;
   }
   100% {
-      background-position: 0% 50%;
+    background-position: 0% 50%;
   }
 }
 
 @-moz-keyframes Gradient {
   0% {
-      background-position: 0% 50%;
+    background-position: 0% 50%;
   }
   50% {
-      background-position: 100% 50%;
+    background-position: 100% 50%;
   }
   100% {
-      background-position: 0% 50%;
+    background-position: 0% 50%;
   }
 }
 
 @keyframes Gradient {
   0% {
-      background-position: 0% 50%;
+    background-position: 0% 50%;
   }
   50% {
-      background-position: 100% 50%;
+    background-position: 100% 50%;
   }
   100% {
-      background-position: 0% 50%;
+    background-position: 0% 50%;
   }
-}
+} */
