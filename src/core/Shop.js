@@ -3,7 +3,8 @@ import Layout from "./Layout";
 import Card from "./Card";
 import { getCategories } from "./apiCore";
 import Checkbox from "./Checkbox";
-import {prices} from "./fixedPrices";
+import RadioBox from "./RadioBox";
+import { prices } from "./fixedPrices";
 
 // Component that sends request to backend
 // and displays products based on filters
@@ -36,7 +37,24 @@ const Shop = () => {
     const newFilters = { ...myFilters };
     // Update filters with cateogry or price
     newFilters.filters[filterBy] = filters;
+
+    if (filterBy == "price") {
+      let priceValues = handlePrice(filters);
+      newFilters.filters[filterBy] = priceValues;
+    }
     setMyFilters(newFilters);
+  };
+
+  const handlePrice = (value) => {
+    const data = prices;
+    let array = [];
+
+    for (let key in data) {
+      if (data[key]._id === parseInt(value)) {
+        array = data[key].array;
+      }
+    }
+    return array;
   };
 
   useEffect(() => {
@@ -62,6 +80,16 @@ const Shop = () => {
               />
             }
           </ul>
+          <h4>Filter by price range</h4>
+          <div>
+            {/* Pass price rangw and handleFilters to RadioBox */}
+            {
+              <RadioBox
+                prices={prices}
+                handleFilters={(filters) => handleFilters(filters, "price")}
+              />
+            }
+          </div>
         </div>
         <div className="col-8">
           {/* Right sidebar -  */}
