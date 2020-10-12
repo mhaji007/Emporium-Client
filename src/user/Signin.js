@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
 import { signin, authenticate, isAuthenticated } from "../auth";
+import styles from "./Signin.module.css";
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -25,6 +26,7 @@ const Signin = () => {
     signin({ email, password }).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
+        console.log(error);
       } else {
         authenticate(data, () => {
           setValues({
@@ -38,7 +40,7 @@ const Signin = () => {
 
   const signInForm = () => (
     <form>
-      <div className="form-group">
+      <div className="form-group w-50">
         <label className="text-muted">Email</label>
         <input
           onChange={handleChange("email")}
@@ -48,7 +50,7 @@ const Signin = () => {
         />
       </div>
 
-      <div className="form-group">
+      <div className="form-group w-50">
         <label className="text-muted">Password</label>
         <input
           onChange={handleChange("password")}

@@ -192,13 +192,13 @@ body {
 
 
 .infoInner .pName {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   color: #252525;
 }
 
 .infoInner .pCompany {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   color: #8c8c8c;
@@ -218,7 +218,7 @@ body {
   position: absolute;
   width: 100%;
   bottom: -20px;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #828282;
   opacity: 0;
 }
@@ -235,7 +235,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
 
