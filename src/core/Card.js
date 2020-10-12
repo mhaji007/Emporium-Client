@@ -13,10 +13,9 @@ const Card = ({ product }) => {
         <div className={styles.row}>
           <div className={styles.elWrapper}>
             <div className={styles.boxUp}>
-            <div className={styles.img}>
-
-              <ShowImage item = {product} url="product"/>
-            </div>
+              <div className={styles.img}>
+                <ShowImage item={product} url="product" />
+              </div>
               <div className={styles.imgInfo}>
                 <div className={styles.infoInner}>
                   <span className={styles.Pname}>{product.description}</span>
@@ -24,8 +23,8 @@ const Card = ({ product }) => {
                 </div>
                 <div className={styles.aSize}>
                   <span className={styles.size}>
-                    <Link to="/">
-                      <button className="btn btn-outline-primary mt mb-2">
+                    <Link to="/" >
+                      <button className= {classnames("btn btn-outline-primary mt mb-2", styles.btn)}>
                         View Product
                       </button>
                     </Link>
@@ -49,11 +48,9 @@ const Card = ({ product }) => {
           </div>
         </div>
       </div>
-      </div>
-      // {/* </div> */}
-      // </div>
-
-
+    </div>
+    // {/* </div> */}
+    // </div>
   );
 };
 

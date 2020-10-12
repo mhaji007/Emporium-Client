@@ -21,7 +21,8 @@ const Shop = () => {
     });
   };
 
-  // Filter is an array of categoryIds and Price ranges
+  // Filter is an object containing an array of
+  // categoryIds and an array of price ranges
   // FilterBy is either by category or by price
   const handleFilters = (filters, filterBy) => {
     console.log("SHOP", filters, filterBy);

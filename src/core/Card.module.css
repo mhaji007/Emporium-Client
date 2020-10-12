@@ -29,6 +29,17 @@ body {
   background-color: #f7f7f7;
 }
 
+
+.btn:hover,
+.btn:active,
+.btn:visited,
+.btn:focus {
+    background-color: #3f96cd !important;
+    border-color: #3f96cd !important;
+    color: white !important;
+
+}
+
 .pageWrapper {
   height: 100%;
   display: table;
@@ -214,6 +225,7 @@ body {
 
 .aSize .size {
   color: #252525;
+
 }
 
 .cart {

@@ -4,6 +4,9 @@ import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../auth";
 
 
+
+
+
 import styles from "./Menu.module.css";
 
 const isActive = (history, path) => {
@@ -19,13 +22,17 @@ const isActive = (history, path) => {
 // history props comes from react-router-dom
 // through withRouter
 const Menu = ({ history }) => {
+
+
   return (
+
+
 
     <div className={styles.nav}>
       <ul className="nav nav-tabs bg-dark">
         <li className="nav-item">
           <Link className="nav-link" style={isActive(history, "/")} to="/">
-            Home
+           Home
           </Link>
         </li>
         <li className="nav-item">

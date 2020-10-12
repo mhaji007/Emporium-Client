@@ -41,9 +41,9 @@
 .jumbotron {
   height: 180px;
   color: #fff;
-  background: linear-gradient(145deg, #464646, transparent, #343a40) , url("/img/Emporium.jpg");
-
-
+  background: linear-gradient(-45deg, #464646, #343a40) , url("/img/Emporium.jpg");
+  background-blend-mode: multiply;
+  
   /* -webkit-animation: Gradient 15s ease infinite;
   -moz-animation: Gradient 15s ease infinite;
   animation: Gradient 15s ease infinite; */

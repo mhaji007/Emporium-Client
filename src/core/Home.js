@@ -3,6 +3,8 @@ import Layout from './Layout';
 import {getProducts} from "./apiCore";
 import Card from './Card';
 import styles from './Home.module.css';
+import SplitText from 'react-pose-text';
+
 
 const Home = () =>
 {
@@ -13,6 +15,7 @@ const Home = () =>
   const loadProductsBySell = () => {
     getProducts('sold').then(data => {
       if(data.error) {
+        console.log(error);
         setError(data.error);
       } else {
         setProductsBySell(data);
@@ -36,10 +39,20 @@ const Home = () =>
 
   }, [])
 
+  const charPoses = {
+    exit: { opacity: 0, y: 20 },
+    enter: {
+      opacity: 1,
+      y: 0,
+      delay: ({ charIndex }) => charIndex * 30
+    }
+  };
+
+
 
   return (
 
-    <Layout title="Emporium" description="Browse. Shop. Enjoy. " className="container-fluid">
+  <Layout title="Emporium" description={<SplitText initialPose="exit" pose="enter" charPoses={charPoses}>Browse. Shop. Enjoy.</SplitText>} className="container-fluid">
 
       <h2 className="mb-4">Best Sellers</h2>
 
