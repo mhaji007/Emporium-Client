@@ -54,7 +54,7 @@ const Shop = () => {
         if (data.error) {
             setError(data.error);
         } else {
-            setFilteredResults(data);
+            setFilteredResults(data.data);
         }
     });
 };
@@ -131,8 +131,16 @@ const Shop = () => {
           </div>
         </div>
         <div className="col-8">
-          {/* Right sidebar -  */}
-          {JSON.stringify(filteredResults)}
+                    <h2 className="mb-4">Products</h2>
+                    <div className="row">
+                        {filteredResults.map((product, i) => (
+                            
+                                <Card key={i}  product={product} />
+
+                        ))}
+                    </div>
+                    <hr />
+                    {/* {loadMoreButton()} */}
         </div>
       </div>
     </Layout>

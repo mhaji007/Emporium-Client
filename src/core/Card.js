@@ -18,7 +18,7 @@ const Card = ({ product }) => {
               </div>
               <div className={styles.imgInfo}>
                 <div className={styles.infoInner}>
-                  <span className={styles.Pname}>{product.description}</span>
+                  <span className={styles.Pname}>{product.description.substring(0,50)}</span>
                   <span className={styles.pCompany}>Yeezy</span>
                 </div>
                 <div className={styles.aSize}>
