@@ -5,6 +5,10 @@ import { getCategories, getFilteredProducts } from "./apiCore";
 import Checkbox from "./Checkbox";
 import RadioBox from "./RadioBox";
 import { prices } from "./fixedPrices";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+import styles from "./Shop.module.css"
+
 
 // Component that sends request to backend
 // and displays products based on filters
@@ -55,6 +59,8 @@ const Shop = () => {
             setError(data.error);
         } else {
             setFilteredResults(data.data);
+            setSize(data.size);
+            setSkip(0);
         }
     });
 };
@@ -95,6 +101,33 @@ const Shop = () => {
     return array;
   };
 
+  const loadMore = () => {
+    let toSkip = skip + limit;
+    // console.log(newFilters);
+    getFilteredProducts(toSkip, limit, myFilters.filters).then(data => {
+        if (data.error) {
+            setError(data.error);
+        } else {
+            setFilteredResults([...filteredResults, ...data.data]);
+            setSize(data.size);
+            setSkip(toSkip);
+        }
+    });
+};
+
+const loadMoreButton = () => {
+    return (
+        size > 0 &&
+        size >= limit && (
+            <AwesomeButton className={styles.awsBtn}>
+            <a onClick={loadMore}>
+                Load more
+            </a>
+            </AwesomeButton>
+        )
+    );
+};
+
   useEffect(() => {
     init();
     loadFilteredResults(skip, limit, myFilters.filters)
@@ -134,13 +167,13 @@ const Shop = () => {
                     <h2 className="mb-4">Products</h2>
                     <div className="row">
                         {filteredResults.map((product, i) => (
-                            
+
                                 <Card key={i}  product={product} />
 
                         ))}
                     </div>
                     <hr />
-                    {/* {loadMoreButton()} */}
+                    {loadMoreButton()}
         </div>
       </div>
     </Layout>
