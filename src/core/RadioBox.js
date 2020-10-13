@@ -4,13 +4,16 @@ const RadioBox = ({prices, handleFilters}) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event) => {
-    handleFilters(event.target.value)
+    // Send in selected radio id
+    handleFilters(event.target.value);
     setValue(event.target.value);
   }
 
- // Loop through prices and
-  // display them in a div with
-  // a label and an input
+  // Loop through the array of
+  // prices and for each price object
+  // display the range array stored
+  // in the value key of the object
+  // in a div with a label and an input
   return prices.map((p, i) => (
     <div key={i}>
       <input
@@ -18,7 +21,7 @@ const RadioBox = ({prices, handleFilters}) => {
         onChange={handleChange}
         value={`${p._id}`}
         // So only one radio
-        // is selectes at a time
+        // is selected at a time
         name= {p}
         type="radio"
         className="mr-2 ml-4"

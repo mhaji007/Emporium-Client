@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
 import Card from "./Card";
-import { getCategories } from "./apiCore";
+import { getCategories, getFilteredProducts } from "./apiCore";
 import Checkbox from "./Checkbox";
 import RadioBox from "./RadioBox";
 import { prices } from "./fixedPrices";
@@ -9,14 +9,33 @@ import { prices } from "./fixedPrices";
 // Component that sends request to backend
 // and displays products based on filters
 const Shop = () => {
-  // Store category ids in the state
+  // State for storing category ids and price
+  // range that is selected based on user interaction
+  // the values for each array comes from Checkbox
+  // and RadioBox respectively (intially empty)
   const [myFilters, setMyFilters] = useState({
     filters: { category: [], price: [] },
   });
   // State holding all categories
   // to be shown on the left sidebar
+  // The category list is passed to
+  // checkBox component as a prop.
+  // After being fetched down below
+  // categoy array is iterated over in
+  // checkBox and displayed on
+  // the UI
+
+  // Since price range is imported
+  // from an external file (hardcoded)
+  // there is no need for a price
+  // range state here
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
+  const [limit, setLimit] = useState(6);
+  const [skip, setSkip] = useState(0);
+  const [size, setSize] = useState(0);
+  const [filteredResults, setFilteredResults] = useState([]);
+
 
   // Fetch categories from backend
   const init = () => {
@@ -29,23 +48,42 @@ const Shop = () => {
     });
   };
 
-  // filter is an object containing an array of
-  // categoryIds and an array of price ranges
-  // filterBy is either by category or by price
-  const handleFilters = (filters, filterBy) => {
-    // console.log("SHOP", filters, filterBy);
-    const newFilters = { ...myFilters };
-    // Update filters with cateogry or price
-    newFilters.filters[filterBy] = filters;
+  const loadFilteredResults = newFilters => {
+    // console.log(newFilters);
+    getFilteredProducts(skip, limit, newFilters).then(data => {
+        if (data.error) {
+            setError(data.error);
+        } else {
+            setFilteredResults(data);
+        }
+    });
+};
 
+  // This method is passed to both checkBox and
+  // RadioBox component. filters is an object
+  // containing either an array of categoryIds or a price range id
+  // filters' value is coming from the changed state
+  // of either checkBox or RadioBox
+  // filterBy is either price or category passed as
+  // a string argument when handleFilters in passed
+  // down to check
+  const handleFilters = (filters, filterBy) => {
+
+     console.log("SHOP", filters, filterBy);
+    const newFilters = { ...myFilters };
+    // Update filters with price
+    newFilters.filters[filterBy] = filters;
+    // Extract array value out of the key
     if (filterBy == "price") {
       let priceValues = handlePrice(filters);
       newFilters.filters[filterBy] = priceValues;
     }
+    loadFilteredResults(myFilters.filters);
     setMyFilters(newFilters);
   };
-
+  // value is the selected radio button's id
   const handlePrice = (value) => {
+
     const data = prices;
     let array = [];
 
@@ -59,6 +97,7 @@ const Shop = () => {
 
   useEffect(() => {
     init();
+    loadFilteredResults(skip, limit, myFilters.filters)
   }, []);
 
   return (
@@ -93,7 +132,7 @@ const Shop = () => {
         </div>
         <div className="col-8">
           {/* Right sidebar -  */}
-          {JSON.stringify(myFilters)}
+          {JSON.stringify(filteredResults)}
         </div>
       </div>
     </Layout>
