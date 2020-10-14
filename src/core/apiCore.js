@@ -1,4 +1,5 @@
 import { API } from "../config";
+import queryString from 'query-string';
 
 //==== Return Product by sold/arrival ====//
 
@@ -54,3 +55,19 @@ export const getFilteredProducts = (skip, limit, filters = {}) => {
       });
 };
 //=================================/
+
+//==== Get all products based on query parameter ====//
+
+export const list = (params) => {
+  const query = queryString.stringify(params);
+
+  return fetch(`${API}/products/search?${query}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+//===================================================//

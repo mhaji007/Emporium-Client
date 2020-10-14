@@ -1,0 +1,28 @@
+.customRow {
+  display: grid;
+  grid-template-columns:repeat( auto-fit, minmax(250px, 1fr) );
+  margin-bottom: 1em;
+}
+
+.h2Inner {
+  margin-left: .4em;
+  color:#e9ecef
+}
+
+
+.awsBtn {
+
+  --button-default-height: 48px;
+  --button-default-font-size: 14px;
+  --button-default-border-radius: 6px;
+  --button-horizontal-padding: 20px;
+  --button-raise-level: 5px;
+  --button-hover-pressure: 2;
+  --transform-speed: 0.185s;
+  --button-primary-color: #3f96cd;
+  --button-primary-color-dark: #000000;
+  /* --button-primary-color-light: #d4d9e4; */
+  /* --button-primary-color-hover: #8c8c8c; */
+  --button-primary-border: none;
+
+  }
