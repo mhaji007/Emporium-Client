@@ -55,16 +55,16 @@ const Home = () =>
   <Layout title="Emporium" description={<SplitText initialPose="exit" pose="enter" charPoses={charPoses}>Browse. Shop. Enjoy.</SplitText>} className="container-fluid">
 
       <Search/>
-      <h2 className="mb-4">Best Sellers</h2>
+      <h2 className="mb-4" className={styles.h2Inner}>Best Sellers</h2>
 
-      <div className={styles.customRow}>
+      <div  className={styles.customRow}>
 
       {productsBySell.map((product, i ) => (<Card key={i} product={product}/>))}
 
       </div>
 
 
-      <h2 className="mb-4">New Arrivals</h2>
+      <h2 className="mb-4" className={styles.h2Inner}>New Arrivals</h2>
 
       <div className={styles.customRow}>
       {productsByArrival.map((product, i ) => (<Card key={i} product={product}/>))}
