@@ -57,12 +57,12 @@ const Search = () => {
     let searchText;
     if (searched && results.length > 0) {
       searchText = (
-        <h2 className={styles.h2Inner}>Found {results.length} products</h2>
+        <h4 className={styles.h4Inner}>Found {results.length} products</h4>
       );
       return <>{searchText}</>;
     }
     if (searched && results.length < 1) {
-      searchText = <h2 className={styles.h2Inner}>No products found</h2>;
+      searchText = <h4 className={styles.h4Inner}>No products found</h4>;
       return <>{searchText}</>;
     }
   };
@@ -70,7 +70,7 @@ const Search = () => {
   const searchedProducts = (results = []) => {
     return (
       <div>
-        <h2 className="mt-4 mb-4">{searchMessage(searched, results)}</h2>
+        <h4 className="mt-4 mb-4">{searchMessage(searched, results)}</h4>
 
         <div className={styles.customRow}>
           {results.map((product, i) => (
@@ -87,12 +87,15 @@ const Search = () => {
     <form onSubmit={searchSubmit}>
       <span className="input-group-text">
         <div className="input-group input-group-lg">
-          <div className="input-group-prepend">
-            <select className="btn mr-2" onChange={handleChange("category")}>
+          <div className="input-group-prepend" >
+
+            <select className="btn mr-2" className={styles.srchSelect} onChange={handleChange("category")}>
               <option value="All">All</option>
               {categories.map((c, i) => (
                 <option key={i} value={c._id}>
+
                   {c.name}
+
                 </option>
               ))}
             </select>
@@ -101,6 +104,7 @@ const Search = () => {
           <input
             type="search"
             className="form-control"
+
             onChange={handleChange("search")}
             placeholder="Search by name"
           />

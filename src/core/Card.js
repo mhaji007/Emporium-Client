@@ -4,8 +4,19 @@ import ShowImage from "./ShowImage";
 import styles from "./Card.module.css";
 import classnames from "classnames";
 
-const Card = ({ product }) => {
+const showViewButton = (showViewProductButton) => {
   return (
+    showViewProductButton&& (
+      <button className= {classnames("btn btn-outline-primary mt mb-2", styles.btn)}>
+        View Product
+      </button>
+    )
+  )
+
+}
+const Card = ({ product, showViewProductButton = true }) => {
+  return (
+
     // <div className={styles.dFlex}>
     // {/* <div className="col-2"> */}
     <div className={classnames(styles.container, styles.pageWrapper)}>
@@ -23,10 +34,10 @@ const Card = ({ product }) => {
                 </div>
                 <div className={styles.aSize}>
                   <span className={styles.size}>
-                    <Link to="/" >
-                      <button className= {classnames("btn btn-outline-primary mt mb-2", styles.btn)}>
-                        View Product
-                      </button>
+                    <Link to={`/product/${product._id}`}>
+
+                        {showViewButton(showViewProductButton)}
+
                     </Link>
                   </span>
                 </div>

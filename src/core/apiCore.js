@@ -58,6 +58,8 @@ export const getFilteredProducts = (skip, limit, filters = {}) => {
 
 //==== Get all products based on query parameter ====//
 
+// Used in returning products based on search
+// to be displayed on the homepage after search
 export const list = (params) => {
   const query = queryString.stringify(params);
 
@@ -71,3 +73,31 @@ export const list = (params) => {
 };
 
 //===================================================//
+
+//==== Get single product ====//
+
+// Used to fetch single product
+// to be displayed on the product (detail) page
+export const read = productId => {
+  return fetch(`${API}/product/${productId}`, {
+      method: "GET"
+  })
+      .then(response => {
+          return response.json();
+      })
+      .catch(err => console.log(err));
+};
+
+//============================//
+
+//==== ====/
+
+export const listRelated = productId => {
+  return fetch(`${API}/products/related/${productId}`, {
+      method: "GET"
+  })
+      .then(response => {
+          return response.json();
+      })
+      .catch(err => console.log(err));
+};

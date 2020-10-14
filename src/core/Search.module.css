@@ -1,10 +1,19 @@
+/* .srchSelect {
+  background-color: #828282;
+  color: white;
+}
+
+.srchBar{
+  background-color:
+} */
+
 .customRow {
   display: grid;
   grid-template-columns:repeat( auto-fit, minmax(250px, 1fr) );
   margin-bottom: 1em;
 }
 
-.h2Inner {
+.h4Inner {
   margin-left: .4em;
   color:#e9ecef
 }
@@ -17,7 +26,7 @@
   --button-default-border-radius: 6px;
   --button-horizontal-padding: 20px;
   --button-raise-level: 5px;
-  --button-hover-pressure: 2;
+  --button-hover-pressure: 1;
   --transform-speed: 0.185s;
   --button-primary-color: #3f96cd;
   --button-primary-color-dark: #000000;

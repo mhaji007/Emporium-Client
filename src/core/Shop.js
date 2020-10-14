@@ -75,7 +75,7 @@ const Shop = () => {
   // down to check
   const handleFilters = (filters, filterBy) => {
 
-     console.log("SHOP", filters, filterBy);
+    console.log("SHOP", filters, filterBy);
     const newFilters = { ...myFilters };
     // Update filters with price
     newFilters.filters[filterBy] = filters;
@@ -119,11 +119,13 @@ const loadMoreButton = () => {
     return (
         size > 0 &&
         size >= limit && (
-            <AwesomeButton className={styles.awsBtn}>
+
+          <AwesomeButton  className={styles.awsBtn}>
             <a onClick={loadMore}>
                 Load more
             </a>
             </AwesomeButton>
+          
         )
     );
 };
@@ -142,7 +144,7 @@ const loadMoreButton = () => {
       <div className="row">
         <div className="col-4">
           {/* Left sidebar - category display */}
-          <h4>Filter by categories</h4>
+          <h6 className={styles.h4Inner}>Filter by categories</h6>
           <ul>
             {/* Pass categories and handleFilters to Checkbox */}
             {
@@ -152,9 +154,9 @@ const loadMoreButton = () => {
               />
             }
           </ul>
-          <h4>Filter by price range</h4>
+          <h6 className={styles.h4Inner}>Filter by price range</h6>
           <div>
-            {/* Pass price rangw and handleFilters to RadioBox */}
+            {/* Pass price range and handleFilters to RadioBox */}
             {
               <RadioBox
                 prices={prices}
@@ -164,7 +166,7 @@ const loadMoreButton = () => {
           </div>
         </div>
         <div className="col-8">
-                    <h2 className="mb-4">Products</h2>
+                    <h4 className="mb-4" className={styles.h4Inner2}>Products</h4>
                     <div className="row">
                         {filteredResults.map((product, i) => (
 
