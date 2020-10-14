@@ -6,17 +6,25 @@ import classnames from "classnames";
 
 const showViewButton = (showViewProductButton) => {
   return (
-    showViewProductButton&& (
-      <button className= {classnames("btn btn-outline-primary mt mb-2", styles.btn)}>
+    showViewProductButton && (
+      <button
+        className={classnames("btn btn-outline-primary mt mb-2", styles.btn)}
+      >
         View Product
       </button>
     )
-  )
+  );
+};
 
-}
+const showStock = (quantity) => {
+  return quantity > 0 ? (
+    <span className="badge badge-primary badge-pill"> In Stock </span>
+  ) : (
+    <span className="badge badge-warning badge-pill"> Out of Stock</span>
+  );
+};
 const Card = ({ product, showViewProductButton = true }) => {
   return (
-
     // <div className={styles.dFlex}>
     // {/* <div className="col-2"> */}
     <div className={classnames(styles.container, styles.pageWrapper)}>
@@ -29,15 +37,17 @@ const Card = ({ product, showViewProductButton = true }) => {
               </div>
               <div className={styles.imgInfo}>
                 <div className={styles.infoInner}>
-                  <span className={styles.Pname}>{product.description.substring(0,50)}</span>
-                  <span className={styles.pCompany}>Yeezy</span>
+                  <span className={styles.Pname}>
+                    {product.description.substring(0, 50)}
+                  </span>
+                  <span className={styles.pCompany}>
+                    {showStock(product.quantity)}
+                  </span>
                 </div>
                 <div className={styles.aSize}>
                   <span className={styles.size}>
                     <Link to={`/product/${product._id}`}>
-
-                        {showViewButton(showViewProductButton)}
-
+                      {showViewButton(showViewProductButton)}
                     </Link>
                   </span>
                 </div>

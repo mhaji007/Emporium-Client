@@ -90,8 +90,11 @@ export const read = productId => {
 
 //============================//
 
-//==== ====/
+//==== Get all related products ====/
 
+// Used to fetch all the related products
+// based on the category of a selected
+// product by the user
 export const listRelated = productId => {
   return fetch(`${API}/products/related/${productId}`, {
       method: "GET"
