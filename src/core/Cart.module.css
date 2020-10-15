@@ -1,0 +1,11 @@
+
+.customRow {
+  display: grid;
+  grid-template-columns:repeat( auto-fit, minmax(250px, 1fr) );
+  margin-bottom: 1em;
+}
+
+ .h4Inner {
+  margin-left: .4em;
+  color:#e9ecef
+}

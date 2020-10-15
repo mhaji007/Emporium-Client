@@ -1,8 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import { Link, Redirect } from "react-router-dom";
 import ShowImage from "./ShowImage";
 import styles from "./Card.module.css";
 import classnames from "classnames";
+import {addItem, updateItem, removeItem} from './cartHelpers';
 
 const showViewButton = (showViewProductButton) => {
   return (
@@ -23,7 +24,61 @@ const showStock = (quantity) => {
     <span className="badge badge-warning badge-pill"> Out of Stock</span>
   );
 };
-const Card = ({ product, showViewProductButton = true }) => {
+
+
+
+
+const Card = ({ product, showViewProductButton = true, showAddToCartButton=true, cartUpdate=false, showPrice=true, showRemoveProductButton=false, setRun = f => f,
+  run = undefined} ) => {
+
+  const [redirect, setRedirect] = useState(false);
+  const [count, setCount] = useState(product.count);
+  const handleChange = (productId) => event => {
+    setRun(!run);
+    setCount(event.target.value <1 ? 1 : event.target.value)
+    if(event.target.value >=1) {
+      updateItem(productId, event.target.value)
+    }
+  }
+
+  const showCartUpdateOptions = cartUpdate => {
+    return cartUpdate && <>
+      <input type="number" className="form-control" value={count} onChange={handleChange(product._id)}/>
+    </>
+  }
+  const addToCart = () => {
+    addItem(product, () => {
+    setRedirect(true);
+
+    });
+  }
+
+const shouldRedirect = redirect => {
+  if(redirect) {
+    return <Redirect to="/cart"/>
+  }
+}
+
+const showAddToCart = (showAddToCartButton) => {
+
+  return showAddToCartButton? (
+    <span onClick = {addToCart} className={styles.txt}>Add to cart</span>
+  ): <span onClick = {addToCart} className={styles.txt}>{showCartUpdateOptions(cartUpdate)}</span>
+}
+
+const showPriceTag = (showPrice) => {
+  return showPrice && <span className={styles.price}>${product.price}</span>
+}
+const showRemoveButton = (showRemoveProductButton) => {
+
+  return showRemoveProductButton&& (
+    <button onClick={() => {removeItem(product._id); setRun(!run);}} className="btn btn-outline-danger mt-2 mb-2">
+      Remove Product
+    </button>
+  )
+}
+
+
   return (
     // <div className={styles.dFlex}>
     // {/* <div className="col-2"> */}
@@ -38,6 +93,7 @@ const Card = ({ product, showViewProductButton = true }) => {
               <div className={styles.imgInfo}>
                 <div className={styles.infoInner}>
                   <span className={styles.Pname}>
+                    {shouldRedirect(redirect)}
                     {product.description.substring(0, 50)}
                   </span>
                   <span className={styles.pCompany}>
@@ -50,6 +106,9 @@ const Card = ({ product, showViewProductButton = true }) => {
                       {showViewButton(showViewProductButton)}
                     </Link>
                   </span>
+                    <Link>
+                      {showRemoveButton(showRemoveProductButton)}
+                    </Link>
                 </div>
               </div>
             </div>
@@ -59,12 +118,13 @@ const Card = ({ product, showViewProductButton = true }) => {
                 <div className={styles.hBgInner}></div>
               </div>
 
-              <a className={styles.cart} href="#">
-                <span className={styles.price}>${product.price}</span>
+              <a className={styles.cart}>
+                {showPriceTag(showPrice)}
                 <span className={styles.addToCart}>
-                  <span className={styles.txt}>Add to cart</span>
+                  {showAddToCart(showAddToCartButton)}
                 </span>
               </a>
+
             </div>
           </div>
         </div>

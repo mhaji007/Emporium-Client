@@ -27,6 +27,8 @@ const Product = props => {
         });
     };
 
+    // Wheneever query parameter changes
+    // we want to run the useEffect
     useEffect(() => {
         // Grab productId from the url upon app's mounting
         const productId = props.match.params.productId;
