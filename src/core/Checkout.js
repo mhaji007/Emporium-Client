@@ -110,9 +110,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
         processPayment(userId, token, paymentData)
           .then((response) => {
             console.log(response);
-            // empty cart
             // create order
-
             const createOrderData = {
               products: products,
               transaction_id: response.transaction.id,
@@ -121,7 +119,8 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
             };
 
             createOrder(userId, token, createOrderData)
-              .then((response) => {
+            .then((response) => {
+              // empty cart
                 emptyCart(() => {
                   setRun(!run); // run useEffect in parent Cart
                   console.log("payment success and empty cart");
@@ -150,7 +149,16 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   const showDropIn = () => (
     <div onBlur={() => setData({ ...data, error: "" })}>
       {data.clientToken !== null && products.length > 0 ? (
-        <div>
+         <div>
+         <div className="gorm-group mb-3">
+             <label className="text-muted">Delivery address:</label>
+             <textarea
+                 onChange={handleAddress}
+                 className="form-control"
+                 value={data.address}
+                 placeholder="Type your delivery address here..."
+             />
+         </div>
           <DropIn
             options={{
               authorization: data.clientToken,
