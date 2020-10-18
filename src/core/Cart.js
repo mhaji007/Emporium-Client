@@ -6,6 +6,8 @@ import Card from './Card';
 // import Checkout from './Checkout';
 import styles from './Cart.module.css';
 import Checkout from './Checkout';
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 
 const Cart = () => {
     const [items, setItems] = useState([]);
@@ -43,8 +45,8 @@ const Cart = () => {
     };
 
     const noItemsMessage = () => (
-        <h4 className={styles.h4Inner}>
-            Your cart is empty. <br /> <Link to="/shop">Continue shopping</Link>
+        <h4 className={styles.h4Inner} >
+           <p> Your cart is empty.</p> <br/> <Link to="/shop"><AwesomeButton className={styles.awsBtn}> Continue shopping  </AwesomeButton> </Link>
         </h4>
     );
 
