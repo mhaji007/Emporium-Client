@@ -16,6 +16,7 @@ import "react-awesome-button/dist/styles.css";
 const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
   // State for holding data (token), error, and delivery address
   const [data, setData] = useState({
+    loading:false,
     success: false,
     clientToken: null,
     error: "",
@@ -153,6 +154,9 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
           <DropIn
             options={{
               authorization: data.clientToken,
+              paypal: {
+                flow: "vault"
+              }
             }}
             onInstance={(instance) => (data.instance = instance)}
           />
