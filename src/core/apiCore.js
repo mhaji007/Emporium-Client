@@ -90,7 +90,7 @@ export const read = productId => {
 
 //============================//
 
-//==== Get all related products ====/
+//==== Get all related products ====//
 
 // Used to fetch all the related products
 // based on the category of a selected
@@ -104,3 +104,23 @@ export const listRelated = productId => {
       })
       .catch(err => console.log(err));
 };
+//=================================//
+
+//==== Get braintree client-side token ====//
+
+  export const getBraintreeClientToken = (userId, token)=> {
+    return fetch(`${API}/braintree/getToken/${userId}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization : `Bearer ${token}`
+      },
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+  };
+
+//==========================================//
