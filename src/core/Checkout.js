@@ -50,9 +50,11 @@ const Checkout = ({ products }) => {
     return isAuthenticated() ? (
       <div>{showDropIn()}</div>
     ) : (
+      <Link to="/signin">
       <AwesomeButton className={styles.awsBtn}>
-        <Link to="/signin">Sign in to checkout</Link>
+      Sign in to checkout
       </AwesomeButton>
+      </Link>
     );
   };
 
@@ -74,7 +76,7 @@ const Checkout = ({ products }) => {
 
   return (
     <div>
-      <h2>Total: ${getTotal()}</h2>
+      <h2 className={styles.h2Inner}>Total: ${getTotal()}</h2>
 
       {showCheckout()}
     </div>

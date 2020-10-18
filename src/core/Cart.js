@@ -18,7 +18,7 @@ const Cart = () => {
     const showItems = items => {
         return (
             <div>
-                <h2 className={styles.h4Inner}>Your cart has {`${items.length}`} items</h2>
+                <h4 className={styles.h4Inner}>Your cart has {`${items.length}`} items</h4>
                 <hr />
                 <div className={styles.customRow}>
 
@@ -55,10 +55,10 @@ const Cart = () => {
             className="container-fluid"
         >
             <div className={styles.customRow} >
-                <div className="col-6">{items.length > 0 ? showItems(items) : noItemsMessage()}</div>
+                <div className="col-5">{items.length > 0 ? showItems(items) : noItemsMessage()}</div>
 
-                <div className="col-6">
-                    <h2 className="mb-4" className={styles.h4Inner}>Your cart summary</h2>
+                <div className="col-7">
+                    <h4 className="mb-4" className={styles.h4Inner}>Your cart summary</h4>
                     <hr />
                     <Checkout products={items} setRun={setRun} run={run} />
                 </div>
