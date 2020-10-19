@@ -150,8 +150,8 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
     <div onBlur={() => setData({ ...data, error: "" })}>
       {data.clientToken !== null && products.length > 0 ? (
          <div>
-         <div className="gorm-group mb-3">
-             <label className="text-muted">Delivery address:</label>
+         <div className="form-group mb-3">
+             <label className="text-muted" className={styles.label}>Delivery address:</label>
              <textarea
                  onChange={handleAddress}
                  className="form-control"
@@ -169,7 +169,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
             onInstance={(instance) => (data.instance = instance)}
           />
           <Link  onClick={buy}>
-          <AwesomeButton className={styles.awsBtn}>Checkout</AwesomeButton>
+          <AwesomeButton className={styles.awsBtn} className="mt-3">Checkout</AwesomeButton>
           </Link>
         </div>
       ) : null}
