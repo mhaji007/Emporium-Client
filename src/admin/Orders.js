@@ -3,7 +3,7 @@ import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { listOrders } from "./apiAdmin";
-
+import moment from "moment";
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
@@ -111,7 +111,7 @@ const Orders = () => {
                                     </li>
                                     <li className="list-group-item">
                                         Ordered on:{" "}
-                                       
+                                        {moment(o.createdAt).fromNow()}
                                     </li>
                                     <li className="list-group-item">
                                         Delivery address: {o.address}
