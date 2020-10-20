@@ -77,7 +77,7 @@ export const authenticate = (data, next) => {
   }
 };
 
-// Used for retrieving user information from local storage
+// Used for confirming authentication (retrieving user information from local storage)
 export const isAuthenticated = () => {
   if (typeof window == "undefined") {
     return false;
@@ -90,4 +90,4 @@ export const isAuthenticated = () => {
   }
 };
 
-//=================================================================//
+//====================================================================================//
