@@ -61,7 +61,7 @@ export const updateItem = (productId, count) => {
           }
       });
 
-      localStorage.setItem('cart', JSON.stringify(cart));
+       localStorage.setItem('cart', JSON.stringify(cart));
   }
 };
 

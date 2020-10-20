@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from './Layout';
-import { getCart, removeItem } from './cartHelpers';
+import { getCart } from './cartHelpers';
 import Card from './Card';
 // import Checkout from './Checkout';
 import styles from './Cart.module.css';
 import Checkout from './Checkout';
 import { AwesomeButton } from "react-awesome-button";
+import classnames from "classnames";
 import "react-awesome-button/dist/styles.css";
 
 const Cart = () => {
@@ -60,7 +61,7 @@ const Cart = () => {
                 <div className="col-5">{items.length > 0 ? showItems(items) : noItemsMessage()}</div>
 
                 <div className="col-7">
-                    <h4 className="mb-4" className={styles.h4Inner}>Your cart summary</h4>
+                    <h4  className={classnames("mb-4", styles.h4Inner)}>Your cart summary</h4>
                     <hr />
                     <Checkout products={items} setRun={setRun} run={run} />
                 </div>

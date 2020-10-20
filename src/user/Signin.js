@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
 import { signin, authenticate, isAuthenticated } from "../auth";
-import styles from "./Signin.module.css";
+// import styles from "./Signin.module.css";
 
 const Signin = () => {
   const [values, setValues] = useState({

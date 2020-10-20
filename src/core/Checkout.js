@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  getProducts,
   getBraintreeClientToken,
   processPayment,
   createOrder,
@@ -10,6 +9,7 @@ import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 import styles from "./Checkout.module.css";
+import classnames from "classnames"
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 
@@ -80,7 +80,8 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
     // Send the nonce (payment method) to server
     // nonce = data.instance.requestPaymentMethod()
     let nonce;
-    let getNonce = data.instance
+    // let getNonce =
+    data.instance
       .requestPaymentMethod()
       .then((data) => {
         // console.log(data);
@@ -151,7 +152,7 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
       {data.clientToken !== null && products.length > 0 ? (
          <div>
          <div className="form-group mb-3">
-             <label className="text-muted" className={styles.label}>Delivery address:</label>
+             <label className ={ styles.label}>Delivery address:</label>
              <textarea
                  onChange={handleAddress}
                  className="form-control"
@@ -168,8 +169,8 @@ const Checkout = ({ products, setRun = (f) => f, run = undefined }) => {
             }}
             onInstance={(instance) => (data.instance = instance)}
           />
-          <Link  onClick={buy}>
-          <AwesomeButton className={styles.awsBtn} className="mt-3">Checkout</AwesomeButton>
+          <Link onClick={buy}>
+          <AwesomeButton className={classnames("mt-3", styles.awsBtn)}>Checkout</AwesomeButton>
           </Link>
         </div>
       ) : null}

@@ -1,36 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
-import { createProduct, getCategories } from './apiAdmin';
+import { Redirect } from 'react-router-dom';
+import { getProduct, getCategories, updateProduct } from './apiAdmin';
 
-const AddProduct = () => {
+const UpdateProduct = ({ match }) => {
     const [values, setValues] = useState({
         name: '',
         description: '',
         price: '',
-        // list of all the
-        // categories pulled
-        // from the backend
         categories: [],
         category: '',
         shipping: '',
         quantity: '',
         photo: '',
         loading: false,
-        error: '',
-        // To inform the user
-        // once the product has created
+        error: false,
         createdProduct: '',
         redirectToProfile: false,
         formData: ''
     });
+    const [categories, setCategories] = useState([]);
 
     const { user, token } = isAuthenticated();
     const {
         name,
         description,
         price,
-        categories,
+        // categories,
         category,
         shipping,
         quantity,
@@ -41,25 +38,41 @@ const AddProduct = () => {
         formData
     } = values;
 
-    // Load categories and set form data
-    const init = () => {
+    const init = productId => {
+        getProduct(productId).then(data => {
+            if (data.error) {
+                setValues({ ...values, error: data.error });
+            } else {
+                // populate the state
+                setValues({
+                    ...values,
+                    name: data.name,
+                    description: data.description,
+                    price: data.price,
+                    category: data.category._id,
+                    shipping: data.shipping,
+                    quantity: data.quantity,
+                    formData: new FormData()
+                });
+                // load categories
+                initCategories();
+            }
+        });
+    };
+
+    // load categories and set form data
+    const initCategories = () => {
         getCategories().then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
-                setValues({
-                    ...values,
-                    categories: data,
-                    formData: new FormData()
-                });
+                setCategories(data);
             }
         });
     };
-    // We need to send form data
-    // and not JSON
-    // Use form data that is available in the browser
+
     useEffect(() => {
-        init();
+        init(match.params.productId);
     }, []);
 
     const handleChange = name => event => {
@@ -72,7 +85,7 @@ const AddProduct = () => {
         event.preventDefault();
         setValues({ ...values, error: '', loading: true });
 
-        createProduct(user._id, token, formData).then(data => {
+        updateProduct(match.params.productId, user._id, token, formData).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error });
             } else {
@@ -84,6 +97,8 @@ const AddProduct = () => {
                     price: '',
                     quantity: '',
                     loading: false,
+                    error: false,
+                    redirectToProfile: true,
                     createdProduct: data.name
                 });
             }
@@ -117,7 +132,7 @@ const AddProduct = () => {
             <div className="form-group">
                 <label className="text-muted">Category</label>
                 <select onChange={handleChange('category')} className="form-control">
-                    <option>Select a category</option>
+                    <option>Please select</option>
                     {categories &&
                         categories.map((c, i) => (
                             <option key={i} value={c._id}>
@@ -130,7 +145,7 @@ const AddProduct = () => {
             <div className="form-group">
                 <label className="text-muted">Shipping</label>
                 <select onChange={handleChange('shipping')} className="form-control">
-                    <option>Select an option</option>
+                    <option>Please select</option>
                     <option value="0">No</option>
                     <option value="1">Yes</option>
                 </select>
@@ -141,7 +156,7 @@ const AddProduct = () => {
                 <input onChange={handleChange('quantity')} type="number" className="form-control" value={quantity} />
             </div>
 
-            <button className="btn btn-outline-primary">Create Product</button>
+            <button className="btn btn-outline-primary">Update Product</button>
         </form>
     );
 
@@ -153,7 +168,7 @@ const AddProduct = () => {
 
     const showSuccess = () => (
         <div className="alert alert-info" style={{ display: createdProduct ? '' : 'none' }}>
-            <h2>{`${createdProduct}`} is created!</h2>
+            <h2>{`${createdProduct}`} is updated!</h2>
         </div>
     );
 
@@ -164,19 +179,27 @@ const AddProduct = () => {
             </div>
         );
 
+    const redirectUser = () => {
+        if (redirectToProfile) {
+            if (!error) {
+                return <Redirect to="/" />;
+            }
+        }
+    };
+
     return (
-        <Layout title="Add a new product" description={`Hello ${user.name}, ready to add a new product?`}>
+        <Layout title="Add a new product" description={`G'day ${user.name}, ready to add a new product?`}>
             <div className="row">
                 <div className="col-md-8 offset-md-2">
                     {showLoading()}
                     {showSuccess()}
                     {showError()}
                     {newPostForm()}
+                    {redirectUser()}
                 </div>
             </div>
         </Layout>
     );
 };
 
-export default AddProduct;
-
+export default UpdateProduct;

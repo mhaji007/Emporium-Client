@@ -118,12 +118,12 @@ const showRemoveButton = (showRemoveProductButton) => {
                 <div className={styles.hBgInner}></div>
               </div>
 
-              <a className={styles.cart}>
+              <Link className={styles.cart} href="./Cart">
                 {showPriceTag(showPrice)}
                 <span className={styles.addToCart}>
                   {showAddToCart(showAddToCartButton)}
                 </span>
-              </a>
+              </Link>
 
             </div>
           </div>
