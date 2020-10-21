@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getCategories, list } from "./apiCore";
 import Card from "./Card";
+import {Link} from "react-router-dom"
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import styles from "./Search.module.css";
@@ -111,7 +112,9 @@ const Search = () => {
         </div>
         <div className="btn input-group-append" style={{ border: "none" }}>
           <AwesomeButton className={styles.awsBtn}>
-            <a>Search</a>
+        <a>
+           Search
+          </a>
           </AwesomeButton>
         </div>
       </span>
