@@ -1,4 +1,4 @@
-A MERN stack ecommerce website complete with payment integertion user/admin dashboards
+A MERN stack ecommerce website complete with payment integration and user/admin dashboards
 
 
 <table>
