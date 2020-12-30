@@ -1,7 +1,6 @@
 import React from "react";
 import Menu from "./Menu";
 import "../styles.css";
-import styles from "./Layout.module.css"
 
 const Layout = ({
   title = "Title",
@@ -11,7 +10,7 @@ const Layout = ({
 }) => {
   return (
     <div>
-      <div className={styles.wrapper}>
+      <div>
       <Menu />
       <div className="jumbotron">
         <h2>{title}</h2>
